@@ -1,0 +1,12 @@
+{
+  "catalogVersion": 1,
+  "songs": [
+    {
+      "songId": "quiet-step",
+      "targetLanguage": "en",
+      "title": "Quiet Step (test only)",
+      "artist": "Reedance Contract Tests",
+      "manifestUrl": "https://content.example.invalid/reedance/en/quiet-step/latest.json"
+    }
+  ]
+}

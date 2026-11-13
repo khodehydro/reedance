@@ -7,13 +7,90 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <meta name="theme-color" content="#f6f9fe" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="preload" as="image" href="/logo.png" fetchpriority="high" />
     <meta
       name="description"
       content="ری‌دنس؛ نمونهٔ یادگیری انگلیسی، اسپانیایی و کره‌ای با موسیقی."
     />
     <title>ری‌دنس | زبان روی موج موسیقی</title>
+    <style>
+      /* First paint: keep the brand visible even before the React bundle loads. */
+      #root[inert] {
+        visibility: hidden;
+      }
+      #app-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        min-height: 100dvh;
+        background:
+          radial-gradient(circle at 50% 44%, #e2edff, transparent 52%), #f6f9fe;
+        color: #3b5680;
+        transition:
+          opacity 0.26s ease,
+          visibility 0.26s ease;
+      }
+      #app-splash.is-exiting {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #app-splash img {
+        display: block;
+        width: min(44vw, 33vh, 220px);
+        height: auto;
+        aspect-ratio: 1;
+        border-radius: 24%;
+        box-shadow: 0 22px 58px rgba(16, 62, 192, 0.2);
+        animation: splash-logo-in 0.5s ease-out both;
+      }
+      #app-splash .splash-credit {
+        position: absolute;
+        bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        font:
+          700 14px/1.5 "Manrope",
+          system-ui,
+          sans-serif;
+        letter-spacing: 0.08em;
+      }
+      html[data-theme="dark"] #app-splash {
+        background:
+          radial-gradient(circle at 50% 44%, #1c3766, transparent 54%), #0d1728;
+        color: #c8d9f4;
+      }
+      @keyframes splash-logo-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #app-splash,
+        #app-splash img {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+      html[data-reduce-motion="true"] #app-splash,
+      html[data-reduce-motion="true"] #app-splash img {
+        animation: none !important;
+        transition: none !important;
+      }
+    </style>
     <script>
+      window.__reedanceSplashStartedAt = performance.now();
       // Apply saved display preferences before the first paint.
       try {
         const preference = JSON.parse(
@@ -44,7 +121,17 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="app-splash" role="status">
+      <img
+        src="/logo.png"
+        width="220"
+        height="220"
+        alt="لوگوی اپلیکیشن ری‌دنس"
+        fetchpriority="high"
+      />
+      <span class="splash-credit" dir="ltr">HYDRO team</span>
+    </div>
+    <div id="root" inert aria-hidden="true"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

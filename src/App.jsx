@@ -1,4 +1,6 @@
 import React, { useEffect, useId, useRef, useState } from "react";
+import appLogo from "../logo.png";
+import { releaseSplash } from "./lib/splash.js";
 import {
   ArrowLeft,
   ArrowRight,
@@ -95,7 +97,7 @@ function Brand({ lang }) {
   return (
     <div className="brand" aria-label="Reedance">
       <span className="brand-symbol">
-        <AudioLines size={22} />
+        <img src={appLogo} width="42" height="42" alt="" />
       </span>
       <span className="brand-words">
         <strong>{lang === "fa" ? "ری‌دنس" : "Reedance"}</strong>
@@ -2419,6 +2421,7 @@ export default function App() {
   const objectUrlRef = useRef(null);
   const t = (fa, en) => (lang === "fa" ? fa : en);
 
+  useEffect(() => releaseSplash(), []);
   useEffect(() => {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";

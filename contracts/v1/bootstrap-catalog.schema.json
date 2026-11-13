@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reedance Android bundled catalog v1",
+  "description": "Bundled, not remotely loaded, in v1. HTTPS manifest URLs and host allowlists must be verified by the Android app at build and runtime; the catalog does not carry trust keys.",
+  "type": "object", "additionalProperties": false,
+  "required": ["catalogVersion", "songs"],
+  "properties": {
+    "catalogVersion": { "const": 1 },
+    "songs": {
+      "type": "array", "maxItems": 10000,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["songId", "targetLanguage", "title", "artist", "manifestUrl"],
+        "properties": {
+          "songId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "targetLanguage": { "enum": ["en", "es", "ko"] },
+          "title": { "type": "string", "minLength": 1, "maxLength": 256 },
+          "artist": { "type": "string", "minLength": 1, "maxLength": 256 },
+          "manifestUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "thumbnailAsset": { "type": "string", "maxLength": 128, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.(?:jpg|png|webp)$" }
+        }
+      }
+    }
+  }
+}

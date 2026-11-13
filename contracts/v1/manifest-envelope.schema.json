@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reedance latest.json envelope v1",
+  "description": "Verify Ed25519 over domain-separated raw decoded payload bytes BEFORE parsing the payload.",
+  "type": "object", "additionalProperties": false,
+  "required": ["signatureKeyId", "payload", "signature"],
+  "properties": {
+    "signatureKeyId": { "type": "string", "minLength": 5, "maxLength": 32, "pattern": "^sig-[a-z0-9-]+$" },
+    "payload": { "type": "string", "minLength": 1, "maxLength": 21846, "pattern": "^[A-Za-z0-9_-]+$" },
+    "signature": { "type": "string", "minLength": 86, "maxLength": 86, "pattern": "^[A-Za-z0-9_-]+$" }
+  }
+}

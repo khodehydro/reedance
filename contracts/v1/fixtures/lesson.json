@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "songId": "quiet-step",
+  "targetLanguage": "en",
+  "locale": "en-GB",
+  "title": "Quiet Step (test only)",
+  "artist": "Reedance Contract Tests",
+  "level": "A1",
+  "credits": {
+    "lyrics": "Original test text for this repository",
+    "noticeFa": "فقط نمونهٔ آزمایشی؛ آهنگ واقعی یا خروجی انتشار نیست.",
+    "noticeEn": "Test fixture only; not a real song or production release.",
+    "audio": "Generated silence for the contract test"
+  },
+  "lyrics": [
+    {
+      "id": "line-1",
+      "text": "One quiet step.",
+      "translationFa": "یک قدم آرام.",
+      "translationEn": "One calm step.",
+      "tokens": [
+        {
+          "surface": "One",
+          "translationFa": "یک",
+          "translationEn": "one"
+        },
+        {
+          "surface": "quiet",
+          "translationFa": "آرام",
+          "translationEn": "calm",
+          "lexemeId": "en:quiet"
+        },
+        {
+          "surface": "step.",
+          "translationFa": "قدم",
+          "translationEn": "step",
+          "lexemeId": "en:step"
+        }
+      ],
+      "startMs": 0
+    },
+    {
+      "id": "line-2",
+      "text": "I keep hope alive.",
+      "translationFa": "من امید را زنده نگه می‌دارم.",
+      "translationEn": "I hold on to hope.",
+      "tokens": [
+        {
+          "surface": "I",
+          "translationFa": "من",
+          "translationEn": "I"
+        },
+        {
+          "surface": "keep",
+          "translationFa": "نگه می‌دارم",
+          "translationEn": "keep",
+          "lexemeId": "en:keep"
+        },
+        {
+          "surface": "hope",
+          "translationFa": "امید",
+          "translationEn": "hope",
+          "lexemeId": "en:hope"
+        },
+        {
+          "surface": "alive.",
+          "translationFa": "زنده",
+          "translationEn": "alive"
+        }
+      ],
+      "startMs": 2000
+    }
+  ],
+  "vocabulary": [
+    {
+      "lexemeId": "en:quiet",
+      "lemma": "quiet",
+      "normalizedKey": "quiet",
+      "translationFa": "آرام",
+      "translationEn": "calm",
+      "ipa": "/ˈkwaɪət/",
+      "faReading": "کوایِت",
+      "partFa": "صفت",
+      "partEn": "adjective",
+      "tone": "mint",
+      "example": {
+        "text": "A quiet room.",
+        "translationFa": "اتاقی آرام.",
+        "translationEn": "A calm room."
+      }
+    },
+    {
+      "lexemeId": "en:step",
+      "lemma": "step",
+      "normalizedKey": "step",
+      "translationFa": "قدم",
+      "translationEn": "a step",
+      "partFa": "اسم",
+      "partEn": "noun",
+      "tone": "amber",
+      "example": {
+        "text": "One step at a time.",
+        "translationFa": "هر بار یک قدم.",
+        "translationEn": "One step at a time."
+      }
+    },
+    {
+      "lexemeId": "en:keep",
+      "lemma": "keep",
+      "normalizedKey": "keep",
+      "translationFa": "نگه داشتن",
+      "translationEn": "to keep",
+      "partFa": "فعل",
+      "partEn": "verb",
+      "example": {
+        "text": "Keep the note.",
+        "translationFa": "یادداشت را نگه دار.",
+        "translationEn": "Retain the note."
+      }
+    },
+    {
+      "lexemeId": "en:hope",
+      "lemma": "hope",
+      "normalizedKey": "hope",
+      "translationFa": "امید",
+      "translationEn": "hope",
+      "partFa": "اسم",
+      "partEn": "noun",
+      "example": {
+        "text": "There is hope.",
+        "translationFa": "امید هست.",
+        "translationEn": "Hope remains."
+      }
+    }
+  ],
+  "grammar": [
+    {
+      "id": "keep-object",
+      "conceptId": "en:keep-object",
+      "tagFa": "ساختار جمله",
+      "tagEn": "Sentence pattern",
+      "titleFa": "keep + مفعول + صفت",
+      "titleEn": "Keep + object + adjective",
+      "bodyFa": "پس از keep می‌توان مفعول و سپس صفت آورد تا ادامهٔ یک حالت را نشان دهیم.",
+      "bodyEn": "An object followed by an adjective after keep expresses maintaining a state.",
+      "example": {
+        "text": "I keep hope alive.",
+        "translationFa": "امید را زنده نگه می‌دارم.",
+        "translationEn": "I preserve hope."
+      },
+      "tone": "blue",
+      "tables": [
+        {
+          "titleFa": "بخش‌های جمله",
+          "titleEn": "Parts of the sentence",
+          "rowHeader": true,
+          "columns": [
+            {
+              "fa": "بخش",
+              "en": "Part"
+            },
+            {
+              "fa": "نمونه",
+              "en": "Example"
+            }
+          ],
+          "rows": [
+            [
+              "فاعل",
+              "I"
+            ],
+            [
+              "فعل",
+              "keep"
+            ],
+            [
+              "مفعول + صفت",
+              "hope alive"
+            ]
+          ]
+        }
+      ],
+      "takeawayFa": "پس از مفعول، صفت حالت او را توضیح می‌دهد.",
+      "takeawayEn": "The adjective describes the object's state.",
+      "check": {
+        "promptFa": "در keep hope alive، مفعول چیست؟",
+        "promptEn": "What is the object in keep hope alive?",
+        "answerFa": "hope",
+        "answerEn": "hope"
+      }
+    }
+  ],
+  "idioms": [
+    {
+      "id": "one-step",
+      "text": "one step at a time",
+      "translationFa": "قدم‌به‌قدم",
+      "translationEn": "gradually",
+      "contextFa": "برای پیشرفت آرام.",
+      "contextEn": "For gradual progress.",
+      "lineId": "line-1"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "hope-sentence",
+      "text": "I keep hope alive.",
+      "translationFa": "من امید را زنده نگه می‌دارم.",
+      "translationEn": "I hold on to hope.",
+      "contextFa": "برای حفظ امید.",
+      "contextEn": "For keeping hope.",
+      "lineId": "line-2"
+    }
+  ],
+  "vocabularyTables": [
+    {
+      "titleFa": "معنی واژه‌ها",
+      "titleEn": "Word meanings",
+      "columns": [
+        {
+          "fa": "واژه",
+          "en": "Word"
+        },
+        {
+          "fa": "معنی",
+          "en": "Meaning"
+        }
+      ],
+      "rows": [
+        [
+          "quiet",
+          {
+            "fa": "آرام",
+            "en": "calm"
+          }
+        ],
+        [
+          "hope",
+          {
+            "fa": "امید",
+            "en": "hope"
+          }
+        ]
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "quiet-choice",
+      "type": "choice",
+      "skillFa": "درک واژه",
+      "skillEn": "Meaning",
+      "promptFa": "quiet در متن یعنی چه؟",
+      "promptEn": "What does quiet mean?",
+      "explanationFa": "quiet یعنی آرام.",
+      "explanationEn": "Quiet means calm.",
+      "lineId": "line-1",
+      "relatedLexemeIds": [
+        "en:quiet"
+      ],
+      "options": [
+        {
+          "id": "fast",
+          "fa": "سریع",
+          "en": "fast"
+        },
+        {
+          "id": "calm",
+          "fa": "آرام",
+          "en": "calm"
+        },
+        {
+          "id": "loud",
+          "fa": "بلند",
+          "en": "loud"
+        }
+      ],
+      "correctId": "calm"
+    },
+    {
+      "id": "word-match",
+      "type": "match",
+      "skillFa": "وصل کردن",
+      "skillEn": "Match",
+      "promptFa": "واژه‌ها و معنی‌ها را وصل کن.",
+      "promptEn": "Match words to meanings.",
+      "explanationFa": "quiet آرام و hope امید است.",
+      "explanationEn": "Quiet is calm and hope is hope.",
+      "pairs": [
+        {
+          "id": "quiet",
+          "text": "quiet",
+          "fa": "آرام",
+          "en": "calm",
+          "lexemeId": "en:quiet"
+        },
+        {
+          "id": "hope",
+          "text": "hope",
+          "fa": "امید",
+          "en": "hope",
+          "lexemeId": "en:hope"
+        }
+      ],
+      "meaningOrder": [
+        "hope",
+        "quiet"
+      ]
+    },
+    {
+      "id": "line-order",
+      "type": "order",
+      "skillFa": "ترتیب جمله",
+      "skillEn": "Build a line",
+      "promptFa": "بخش‌های جمله را مرتب کن.",
+      "promptEn": "Put the chunks in order.",
+      "explanationFa": "ترتیب: I keep + hope + alive.",
+      "explanationEn": "The line is I keep hope alive.",
+      "lineId": "line-2",
+      "relatedLexemeIds": [
+        "en:hope"
+      ],
+      "chunks": [
+        {
+          "id": "i-keep",
+          "text": "I keep"
+        },
+        {
+          "id": "hope",
+          "text": "hope"
+        },
+        {
+          "id": "alive",
+          "text": "alive."
+        }
+      ],
+      "presentationOrder": [
+        "alive",
+        "i-keep",
+        "hope"
+      ]
+    },
+    {
+      "id": "hope-type",
+      "type": "typing",
+      "skillFa": "تایپ واژه",
+      "skillEn": "Type the word",
+      "promptFa": "واژهٔ جاافتاده را بنویس.",
+      "promptEn": "Type the missing word.",
+      "explanationFa": "واژه hope است.",
+      "explanationEn": "The missing word is hope.",
+      "lineId": "line-2",
+      "relatedLexemeIds": [
+        "en:hope"
+      ],
+      "context": "I keep ____ alive.",
+      "accepted": [
+        "hope"
+      ]
+    }
+  ],
+  "disclaimerFa": "صدای این نمونه سکوت است و متن آن خوانده نشده؛ فقط برای آزمون قرارداد است.",
+  "disclaimerEn": "The sample audio is silent, not sung; this is only a contract test.",
+  "media": {
+    "audio": {
+      "path": "audio.wav",
+      "mimeType": "audio/wav",
+      "durationMs": 4000,
+      "sha256": "bff9ae2d1c0defb0f2b9070f43439fcb723621dbeb1cca5e2dbadcd9bfb13c68"
+    }
+  }
+}

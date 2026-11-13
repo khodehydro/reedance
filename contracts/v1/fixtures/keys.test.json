@@ -1,0 +1,8 @@
+{
+  "testOnly": true,
+  "encryptionKeyId": "enc-test-v1",
+  "aes256KeyBase64url": "EWTiwF5uDDU5h5G89KH4X9Gp5l7LEzw_yXUGMXSZ8lE",
+  "nonceBase64url": "DJYKx5GkoX32-zwi",
+  "signatureKeyId": "sig-test-v1",
+  "ed25519PublicKeyBase64url": "RJ5Fa-o5dKf7C8Bs-flxXsHIfFf_3uHaZM1NB55cf1E"
+}

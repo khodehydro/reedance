@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:reedance:lesson:v1",
+  "title": "Reedance published lesson v1",
+  "description": "The UTF-8 lesson.json ONLY inside an encrypted song pack after Windows audio selection and timeline sync. The content-only draft references its reusable definitions; cross-field checks in docs/architecture/PACKAGE_V1.md remain mandatory.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "songId", "targetLanguage", "locale", "title", "artist", "level", "credits", "media", "lyrics", "vocabulary", "grammar", "idioms", "sentences", "vocabularyTables", "questions"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "songId": { "$ref": "#/$defs/id" },
+    "targetLanguage": { "$ref": "#/$defs/language" },
+    "locale": { "$ref": "#/$defs/locale" },
+    "title": { "$ref": "#/$defs/text" },
+    "artist": { "$ref": "#/$defs/text" },
+    "level": { "enum": ["A1", "A2", "B1", "B2", "C1", "C2"] },
+    "disclaimerFa": { "$ref": "#/$defs/text" },
+    "disclaimerEn": { "$ref": "#/$defs/text" },
+    "credits": { "$ref": "#/$defs/credits" },
+    "media": { "$ref": "#/$defs/media" },
+    "lyrics": { "type": "array", "minItems": 1, "maxItems": 500, "items": { "$ref": "#/$defs/line" } },
+    "vocabulary": { "type": "array", "minItems": 1, "maxItems": 1000, "items": { "$ref": "#/$defs/word" } },
+    "grammar": { "type": "array", "minItems": 1, "maxItems": 200, "items": { "$ref": "#/$defs/grammarItem" } },
+    "idioms": { "type": "array", "maxItems": 200, "items": { "$ref": "#/$defs/phrase" } },
+    "sentences": { "type": "array", "minItems": 1, "maxItems": 500, "items": { "$ref": "#/$defs/phrase" } },
+    "vocabularyTables": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/table" } },
+    "questions": { "type": "array", "minItems": 1, "maxItems": 200, "items": { "$ref": "#/$defs/question" } },
+    "idAliases": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/idAlias" } }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1, "maxLength": 10000, "pattern": "\\S" },
+    "shortText": { "type": "string", "minLength": 1, "maxLength": 256, "pattern": "\\S" },
+    "id": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "lexemeId": { "type": "string", "minLength": 4, "maxLength": 100, "pattern": "^(?:en|es|ko):[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "language": { "enum": ["en", "es", "ko"] },
+    "locale": { "type": "string", "minLength": 5, "maxLength": 32, "pattern": "^(?:en|es|ko)(?:-[A-Za-z0-9]{2,8}){1,3}$" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "tone": { "enum": ["blue", "mint", "amber", "coral", "rose", "apricot"] },
+    "credits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["audio", "lyrics", "noticeFa", "noticeEn"],
+      "properties": {
+        "audio": { "$ref": "#/$defs/shortText" },
+        "lyrics": { "$ref": "#/$defs/shortText" },
+        "cover": { "$ref": "#/$defs/shortText" },
+        "noticeFa": { "$ref": "#/$defs/text" },
+        "noticeEn": { "$ref": "#/$defs/text" }
+      }
+    },
+    "media": {
+      "type": "object", "additionalProperties": false, "required": ["audio"],
+      "properties": {
+        "audio": {
+          "type": "object", "additionalProperties": false,
+          "required": ["path", "mimeType", "durationMs", "sha256"],
+          "properties": {
+            "path": { "enum": ["audio.mp3", "audio.m4a", "audio.wav"] },
+            "mimeType": { "enum": ["audio/mpeg", "audio/mp4", "audio/wav"] },
+            "durationMs": { "type": "integer", "minimum": 1, "maximum": 86400000 },
+            "sha256": { "$ref": "#/$defs/sha256" }
+          }
+        },
+        "cover": {
+          "type": "object", "additionalProperties": false,
+          "required": ["path", "mimeType", "sha256"],
+          "properties": {
+            "path": { "enum": ["cover.jpg", "cover.png", "cover.webp"] },
+            "mimeType": { "enum": ["image/jpeg", "image/png", "image/webp"] },
+            "sha256": { "$ref": "#/$defs/sha256" }
+          }
+        }
+      }
+    },
+    "line": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "startMs", "text", "translationFa", "translationEn", "tokens"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "startMs": { "type": "integer", "minimum": 0 },
+        "endMs": { "type": "integer", "minimum": 1 },
+        "text": { "$ref": "#/$defs/text" },
+        "translationFa": { "$ref": "#/$defs/text" },
+        "translationEn": { "$ref": "#/$defs/text" },
+        "tokens": { "type": "array", "minItems": 1, "maxItems": 200, "items": { "$ref": "#/$defs/token" } }
+      }
+    },
+    "untimedLine": {
+      "type": "object", "additionalProperties": false,
+      "description": "Authoring line supplied by the content agent. No startMs/endMs: Windows must align it to the locally selected audio.",
+      "required": ["id", "text", "translationFa", "translationEn", "tokens"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "text": { "$ref": "#/$defs/text" },
+        "translationFa": { "$ref": "#/$defs/text" },
+        "translationEn": { "$ref": "#/$defs/text" },
+        "tokens": { "type": "array", "minItems": 1, "maxItems": 200, "items": { "$ref": "#/$defs/token" } }
+      }
+    },
+    "token": {
+      "type": "object", "additionalProperties": false,
+      "required": ["surface", "translationFa", "translationEn"],
+      "properties": {
+        "surface": { "$ref": "#/$defs/shortText" },
+        "translationFa": { "$ref": "#/$defs/shortText" },
+        "translationEn": { "$ref": "#/$defs/shortText" },
+        "lexemeId": { "$ref": "#/$defs/lexemeId" }
+      }
+    },
+    "example": {
+      "type": "object", "additionalProperties": false,
+      "required": ["text", "translationFa", "translationEn"],
+      "properties": {
+        "text": { "$ref": "#/$defs/text" },
+        "translationFa": { "$ref": "#/$defs/text" },
+        "translationEn": { "$ref": "#/$defs/text" }
+      }
+    },
+    "word": {
+      "type": "object", "additionalProperties": false,
+      "required": ["lexemeId", "lemma", "normalizedKey", "translationFa", "translationEn", "example"],
+      "properties": {
+        "lexemeId": { "$ref": "#/$defs/lexemeId" },
+        "lemma": { "$ref": "#/$defs/shortText" },
+        "normalizedKey": { "$ref": "#/$defs/shortText" },
+        "translationFa": { "$ref": "#/$defs/text" },
+        "translationEn": { "$ref": "#/$defs/text" },
+        "ipa": { "$ref": "#/$defs/shortText" },
+        "faReading": { "$ref": "#/$defs/shortText" },
+        "partFa": { "$ref": "#/$defs/shortText" },
+        "partEn": { "$ref": "#/$defs/shortText" },
+        "article": { "$ref": "#/$defs/shortText" },
+        "genderFa": { "$ref": "#/$defs/shortText" },
+        "genderEn": { "$ref": "#/$defs/shortText" },
+        "plural": { "$ref": "#/$defs/shortText" },
+        "tone": { "$ref": "#/$defs/tone" },
+        "example": { "$ref": "#/$defs/example" },
+        "tables": { "type": "array", "maxItems": 10, "items": { "$ref": "#/$defs/table" } }
+      }
+    },
+    "cell": {
+      "oneOf": [
+        { "$ref": "#/$defs/text" },
+        {
+          "type": "object", "additionalProperties": false, "required": ["fa", "en"],
+          "properties": {
+            "fa": { "$ref": "#/$defs/text" },
+            "en": { "$ref": "#/$defs/text" },
+            "dir": { "enum": ["auto", "ltr", "rtl"] },
+            "locale": { "type": "string", "minLength": 2, "maxLength": 32, "pattern": "^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$" }
+          }
+        }
+      ]
+    },
+    "table": {
+      "type": "object", "additionalProperties": false,
+      "required": ["titleFa", "titleEn", "columns", "rows"],
+      "properties": {
+        "titleFa": { "$ref": "#/$defs/shortText" },
+        "titleEn": { "$ref": "#/$defs/shortText" },
+        "introFa": { "$ref": "#/$defs/text" },
+        "introEn": { "$ref": "#/$defs/text" },
+        "footerFa": { "$ref": "#/$defs/text" },
+        "footerEn": { "$ref": "#/$defs/text" },
+        "rowHeader": { "type": "boolean" },
+        "columns": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "$ref": "#/$defs/cell" } },
+        "rows": {
+          "type": "array", "minItems": 1, "maxItems": 100,
+          "items": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "$ref": "#/$defs/cell" } }
+        }
+      }
+    },
+    "grammarItem": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "tagFa", "tagEn", "titleFa", "titleEn", "bodyFa", "bodyEn", "example"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "conceptId": { "$ref": "#/$defs/lexemeId" },
+        "tagFa": { "$ref": "#/$defs/shortText" },
+        "tagEn": { "$ref": "#/$defs/shortText" },
+        "titleFa": { "$ref": "#/$defs/shortText" },
+        "titleEn": { "$ref": "#/$defs/shortText" },
+        "bodyFa": { "$ref": "#/$defs/text" },
+        "bodyEn": { "$ref": "#/$defs/text" },
+        "example": { "$ref": "#/$defs/example" },
+        "tone": { "$ref": "#/$defs/tone" },
+        "tables": { "type": "array", "maxItems": 10, "items": { "$ref": "#/$defs/table" } },
+        "takeawayFa": { "$ref": "#/$defs/text" },
+        "takeawayEn": { "$ref": "#/$defs/text" },
+        "check": {
+          "type": "object", "additionalProperties": false,
+          "required": ["promptFa", "promptEn", "answerFa", "answerEn"],
+          "properties": {
+            "promptFa": { "$ref": "#/$defs/text" },
+            "promptEn": { "$ref": "#/$defs/text" },
+            "answerFa": { "$ref": "#/$defs/text" },
+            "answerEn": { "$ref": "#/$defs/text" }
+          }
+        }
+      }
+    },
+    "phrase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "text", "translationFa", "translationEn"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "text": { "$ref": "#/$defs/text" },
+        "translationFa": { "$ref": "#/$defs/text" },
+        "translationEn": { "$ref": "#/$defs/text" },
+        "contextFa": { "$ref": "#/$defs/text" },
+        "contextEn": { "$ref": "#/$defs/text" },
+        "lineId": { "$ref": "#/$defs/id" },
+        "tone": { "$ref": "#/$defs/tone" }
+      }
+    },
+    "questionBase": {
+      "type": "object",
+      "required": ["id", "type", "skillFa", "skillEn", "promptFa", "promptEn", "explanationFa", "explanationEn"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": { "enum": ["choice", "match", "order", "typing"] },
+        "skillFa": { "$ref": "#/$defs/shortText" },
+        "skillEn": { "$ref": "#/$defs/shortText" },
+        "promptFa": { "$ref": "#/$defs/text" },
+        "promptEn": { "$ref": "#/$defs/text" },
+        "explanationFa": { "$ref": "#/$defs/text" },
+        "explanationEn": { "$ref": "#/$defs/text" },
+        "context": { "$ref": "#/$defs/text" },
+        "lineId": { "$ref": "#/$defs/id" },
+        "speech": { "$ref": "#/$defs/text" },
+        "relatedLexemeIds": { "type": "array", "maxItems": 20, "uniqueItems": true, "items": { "$ref": "#/$defs/lexemeId" } }
+      }
+    },
+    "question": {
+      "oneOf": [
+        {
+          "type": "object",
+          "allOf": [ { "$ref": "#/$defs/questionBase" }, {
+            "type": "object", "required": ["options", "correctId"],
+            "properties": {
+              "type": { "const": "choice" },
+              "options": { "type": "array", "minItems": 2, "maxItems": 6, "items": { "$ref": "#/$defs/choiceOption" } },
+              "correctId": { "$ref": "#/$defs/id" }
+            }
+          } ], "unevaluatedProperties": false
+        },
+        {
+          "type": "object",
+          "allOf": [ { "$ref": "#/$defs/questionBase" }, {
+            "type": "object", "required": ["pairs"],
+            "properties": {
+              "type": { "const": "match" },
+              "pairs": { "type": "array", "minItems": 2, "maxItems": 6, "items": { "$ref": "#/$defs/matchPair" } },
+              "meaningOrder": { "type": "array", "minItems": 2, "maxItems": 6, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } }
+            }
+          } ], "unevaluatedProperties": false
+        },
+        {
+          "type": "object",
+          "allOf": [ { "$ref": "#/$defs/questionBase" }, {
+            "type": "object", "required": ["chunks"],
+            "properties": {
+              "type": { "const": "order" },
+              "chunks": { "type": "array", "minItems": 2, "maxItems": 12, "items": { "$ref": "#/$defs/orderChunk" } },
+              "presentationOrder": { "type": "array", "minItems": 2, "maxItems": 12, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+              "relatedLexemeIds": { "type": "array", "maxItems": 20, "uniqueItems": true, "items": { "$ref": "#/$defs/lexemeId" } }
+            }
+          } ], "unevaluatedProperties": false
+        },
+        {
+          "type": "object",
+          "allOf": [ { "$ref": "#/$defs/questionBase" }, {
+            "type": "object", "required": ["context", "accepted"],
+            "properties": {
+              "type": { "const": "typing" },
+              "context": { "$ref": "#/$defs/text" },
+              "accepted": { "type": "array", "minItems": 1, "maxItems": 8, "uniqueItems": true, "items": { "$ref": "#/$defs/shortText" } }
+            }
+          } ], "unevaluatedProperties": false
+        }
+      ]
+    },
+    "choiceOption": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "fa", "en"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "fa": { "$ref": "#/$defs/shortText" }, "en": { "$ref": "#/$defs/shortText" } }
+    },
+    "matchPair": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "text", "fa", "en", "lexemeId"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "text": { "$ref": "#/$defs/shortText" },
+        "fa": { "$ref": "#/$defs/shortText" },
+        "en": { "$ref": "#/$defs/shortText" },
+        "lexemeId": { "$ref": "#/$defs/lexemeId" }
+      }
+    },
+    "orderChunk": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "text"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "text": { "$ref": "#/$defs/shortText" } }
+    },
+    "idAlias": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "from", "to"],
+      "properties": {
+        "kind": { "enum": ["lexeme", "line", "grammar", "idiom", "sentence"] },
+        "from": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "to": { "type": "string", "minLength": 1, "maxLength": 100 }
+      }
+    }
+  }
+}

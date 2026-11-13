@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reedance signed latest.json payload v1",
+  "description": "The decoded UTF-8 JSON bytes from latest.json.payload. Sign the original bytes, not a reserialized object. Filename/version/hash and bootstrap consistency are additional semantic checks.",
+  "type": "object", "additionalProperties": false,
+  "required": ["manifestVersion", "songId", "targetLanguage", "contentVersionCode", "displayVersion", "containerVersion", "lessonSchemaVersion", "releasedAt", "package"],
+  "properties": {
+    "manifestVersion": { "const": 1 },
+    "songId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "targetLanguage": { "enum": ["en", "es", "ko"] },
+    "contentVersionCode": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+    "displayVersion": { "type": "string", "maxLength": 32, "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)$" },
+    "containerVersion": { "const": 1 },
+    "lessonSchemaVersion": { "const": 1 },
+    "releasedAt": { "type": "string", "format": "date-time" },
+    "package": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256", "encryptionKeyId"],
+      "properties": {
+        "fileName": { "type": "string", "maxLength": 100, "pattern": "^v[0-9]{6,10}-[a-f0-9]{64}\\.rdpack$" },
+        "sizeBytes": { "type": "integer", "minimum": 50, "maximum": 268435456 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "encryptionKeyId": { "type": "string", "minLength": 5, "maxLength": 32, "pattern": "^enc-[a-z0-9-]+$" }
+      }
+    }
+  }
+}

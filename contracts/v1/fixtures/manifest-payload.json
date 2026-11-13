@@ -1,0 +1,16 @@
+{
+  "manifestVersion": 1,
+  "songId": "quiet-step",
+  "targetLanguage": "en",
+  "contentVersionCode": 1,
+  "displayVersion": "1.0.0",
+  "containerVersion": 1,
+  "lessonSchemaVersion": 1,
+  "releasedAt": "2026-01-01T00:00:00Z",
+  "package": {
+    "fileName": "v000001-93b278b821bcefeed5ff46d7aa105030113fab65806fee32cde33c559fb4a1e4.rdpack",
+    "sizeBytes": 74110,
+    "sha256": "93b278b821bcefeed5ff46d7aa105030113fab65806fee32cde33c559fb4a1e4",
+    "encryptionKeyId": "enc-test-v1"
+  }
+}
