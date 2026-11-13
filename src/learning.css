@@ -1,0 +1,520 @@
+/* A restrained teaching palette: colour groups related material, never a
+   grammatical gender or a correct/incorrect answer. Text labels carry meaning. */
+.learning-tone {
+  --learning-accent: #5489d6;
+  --learning-ink: #2e609e;
+  --learning-body: #4a5d75;
+  --learning-border: #d4e3f7;
+  --learning-tint: #f8fbff;
+  --learning-soft: #e9f2ff;
+}
+.learning-tone[data-tone="mint"] {
+  --learning-accent: #48a679;
+  --learning-ink: #246c50;
+  --learning-border: #c4e5d4;
+  --learning-tint: #f8fdf9;
+  --learning-soft: #e6f5ec;
+}
+.learning-tone[data-tone="amber"] {
+  --learning-accent: #cc962f;
+  --learning-ink: #79501a;
+  --learning-border: #efdcae;
+  --learning-tint: #fffdf7;
+  --learning-soft: #fff2d7;
+}
+.learning-tone[data-tone="coral"] {
+  --learning-accent: #d66c60;
+  --learning-ink: #954b40;
+  --learning-border: #f0c8c1;
+  --learning-tint: #fffbfa;
+  --learning-soft: #fdece8;
+}
+.learning-tone[data-tone="rose"] {
+  --learning-accent: #cf78a6;
+  --learning-ink: #894b6d;
+  --learning-border: #edd0de;
+  --learning-tint: #fffafd;
+  --learning-soft: #fcebf4;
+}
+.learning-tone[data-tone="apricot"] {
+  --learning-accent: #d18a4b;
+  --learning-ink: #825124;
+  --learning-border: #f0d5bb;
+  --learning-tint: #fffbf8;
+  --learning-soft: #fff0e2;
+}
+html[data-theme="dark"] .learning-tone {
+  --learning-accent: #92baf4;
+  --learning-ink: #b6d5ff;
+  --learning-body: #bfd0e5;
+  --learning-border: #3a5677;
+  --learning-tint: #1b3049;
+  --learning-soft: #264664;
+}
+html[data-theme="dark"] .learning-tone[data-tone="mint"] {
+  --learning-accent: #72d1a5;
+  --learning-ink: #b0eccf;
+  --learning-border: #37624f;
+  --learning-tint: #1c312d;
+  --learning-soft: #264b3e;
+}
+html[data-theme="dark"] .learning-tone[data-tone="amber"] {
+  --learning-accent: #e3be67;
+  --learning-ink: #f1d99f;
+  --learning-border: #655634;
+  --learning-tint: #332f29;
+  --learning-soft: #4c402d;
+}
+html[data-theme="dark"] .learning-tone[data-tone="coral"] {
+  --learning-accent: #ee9b8e;
+  --learning-ink: #ffc7bd;
+  --learning-border: #694841;
+  --learning-tint: #352a2c;
+  --learning-soft: #513639;
+}
+html[data-theme="dark"] .learning-tone[data-tone="rose"] {
+  --learning-accent: #e4a2c2;
+  --learning-ink: #f3c4d9;
+  --learning-border: #67465a;
+  --learning-tint: #322b36;
+  --learning-soft: #50374b;
+}
+html[data-theme="dark"] .learning-tone[data-tone="apricot"] {
+  --learning-accent: #e8b07a;
+  --learning-ink: #f3d0a9;
+  --learning-border: #70523a;
+  --learning-tint: #352e29;
+  --learning-soft: #513e30;
+}
+
+/* Song notes and the starter's first-grammar cards share the same language. */
+.grammar-card.learning-tone,
+.starter-grammar-card.learning-tone {
+  min-width: 0;
+  border-color: var(--learning-border);
+  border-inline-start: 4px solid var(--learning-accent);
+  background: var(--learning-tint);
+}
+html[data-theme="dark"] .grammar-card.learning-tone[data-tone],
+html[data-theme="dark"] .starter-grammar-card.learning-tone[data-tone] {
+  border-color: var(--learning-border);
+  border-inline-start-color: var(--learning-accent);
+  background: var(--learning-tint);
+}
+.grammar-card.learning-tone .grammar-index,
+.grammar-card.learning-tone .grammar-tag,
+.starter-grammar-card.learning-tone .starter-grammar-number,
+.starter-grammar-card.learning-tone .starter-grammar-pattern {
+  color: var(--learning-ink);
+}
+.grammar-card.learning-tone .grammar-tag,
+.starter-grammar-card.learning-tone .starter-grammar-pattern {
+  background: var(--learning-soft);
+}
+.grammar-card.learning-tone .grammar-example,
+.starter-grammar-card.learning-tone .starter-grammar-example {
+  border-color: var(--learning-border);
+  border-inline-start: 3px solid var(--learning-accent);
+  background: var(--paper);
+}
+html[data-theme="dark"] .grammar-card.learning-tone[data-tone] .grammar-example,
+html[data-theme="dark"]
+  .starter-grammar-card.learning-tone[data-tone]
+  .starter-grammar-example {
+  background: var(--paper);
+  border-color: var(--learning-border);
+  border-inline-start-color: var(--learning-accent);
+}
+html[data-theme="dark"] .grammar-card.learning-tone[data-tone] .grammar-tag,
+html[data-theme="dark"]
+  .starter-grammar-card.learning-tone[data-tone]
+  .starter-grammar-pattern {
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+}
+.starter-grammar-card.learning-tone {
+  display: block;
+  width: 100%;
+  padding: 20px 22px;
+}
+.grammar-card.learning-tone > p,
+.starter-grammar-card.learning-tone > p {
+  color: var(--learning-body);
+  font-size: calc(11px * var(--text-scale, 1));
+  line-height: 1.9;
+}
+.starter-grammar-card.learning-tone > p {
+  margin-bottom: 5px;
+}
+.starter-grammar-card.learning-tone .starter-grammar-example {
+  min-height: 0;
+  margin-top: 14px;
+}
+
+/* Native table semantics, horizontal scrolling limited to the table itself. */
+.learning-table {
+  min-width: 0;
+  margin: 17px 0 0;
+  border: 1px solid var(--learning-border);
+  border-radius: 13px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.learning-table figcaption {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+}
+.learning-table figcaption > span:last-child {
+  min-width: 0;
+}
+.learning-table figcaption strong,
+.learning-table figcaption small {
+  display: block;
+}
+.learning-table figcaption strong {
+  color: var(--ink);
+  font-size: calc(12px * var(--text-scale, 1));
+  line-height: 1.6;
+}
+.learning-table figcaption small {
+  margin-top: 2px;
+  color: var(--learning-body);
+  font-size: calc(10px * var(--text-scale, 1));
+  line-height: 1.7;
+}
+.learning-table-icon {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  flex: none;
+  border-radius: 8px;
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+}
+.learning-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  border-top: 1px solid var(--learning-border);
+}
+.learning-table-scroll:focus-visible {
+  outline: 2px solid var(--learning-accent);
+  outline-offset: -2px;
+}
+.learning-table table {
+  width: 100%;
+  min-width: calc(var(--table-columns) * 115px);
+  border-collapse: collapse;
+  text-align: start;
+  font-size: calc(11px * var(--text-scale, 1));
+  line-height: 1.7;
+}
+.learning-table th,
+.learning-table td {
+  min-width: 94px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.learning-table th:first-child,
+.learning-table td:first-child {
+  min-width: 115px;
+}
+.learning-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.learning-table thead {
+  background: var(--learning-soft);
+}
+.learning-table thead th,
+.learning-table tbody th {
+  color: var(--learning-ink);
+  font-weight: 800;
+}
+.learning-table tbody td {
+  color: var(--ink);
+  font-weight: 500;
+}
+.learning-table tbody tr:nth-child(even) {
+  background: var(--learning-tint);
+}
+.learning-table-hint {
+  display: block;
+  padding: 7px 12px;
+  border-top: 1px solid var(--learning-border);
+  background: var(--learning-tint);
+  color: var(--learning-body);
+  font-size: calc(10px * var(--text-scale, 1));
+  line-height: 1.6;
+}
+.learning-table-footer {
+  margin: 0;
+  padding: 10px 13px;
+  border-top: 1px solid var(--learning-border);
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+  font-size: calc(11px * var(--text-scale, 1));
+  line-height: 1.8;
+}
+.learning-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.learning-speak {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 33px;
+  margin-top: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--learning-border);
+  border-radius: 8px;
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+  font-size: calc(10px * var(--text-scale, 1));
+  font-weight: 800;
+}
+.learning-speak:hover,
+.learning-check button:hover {
+  border-color: var(--learning-accent);
+}
+.learning-takeaway {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 15px;
+  padding: 12px 13px;
+  border-inline-start: 3px solid var(--learning-accent);
+  border-radius: 8px;
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+}
+.learning-takeaway .uicon {
+  margin-top: 2px;
+}
+.learning-takeaway strong,
+.learning-takeaway p {
+  display: block;
+  margin: 0;
+  color: inherit;
+  font-size: calc(11px * var(--text-scale, 1));
+  line-height: 1.8;
+}
+.learning-takeaway strong {
+  font-weight: 800;
+}
+.learning-check {
+  margin-top: 17px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--learning-border);
+}
+.learning-check-kicker {
+  color: var(--learning-ink);
+  font-size: calc(9px * var(--text-scale, 1));
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+.learning-check p {
+  margin: 5px 0 10px;
+  color: var(--ink);
+  font-size: calc(11px * var(--text-scale, 1));
+  line-height: 1.8;
+}
+.learning-check button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 5px 10px;
+  border: 1px solid var(--learning-border);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--learning-ink);
+  font-size: calc(10px * var(--text-scale, 1));
+  font-weight: 800;
+}
+.learning-check .learning-check-answer {
+  margin: 9px 0 0;
+  padding: 9px 11px;
+  border-radius: 8px;
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+}
+
+/* Vocabulary: coloured, quiet card edges; explicit gender labels, never a
+   pink/blue gender code. A reference table gives articles and inflections. */
+.vocab-row.learning-tone {
+  border-color: var(--learning-border);
+  border-inline-start: 3px solid var(--learning-accent);
+  background: var(--learning-tint);
+}
+.vocab-row.learning-tone .vocab-main strong {
+  color: var(--ink);
+}
+.vocab-row.learning-tone .vocab-sound {
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+}
+.vocab-kind {
+  color: var(--learning-ink);
+  font-size: calc(9px * var(--text-scale, 1));
+  font-weight: 700;
+}
+.word-grammar-meta {
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 6px;
+  padding: 5px 9px;
+  border-radius: 7px;
+  background: var(--soft);
+  color: var(--blue);
+  font-size: calc(10px * var(--text-scale, 1));
+  overflow-wrap: anywhere;
+}
+.learning-word-tables {
+  margin-top: 20px;
+}
+
+.starter-words-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 0 0 17px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--soft);
+  color: var(--ink);
+  font-size: calc(10px * var(--text-scale, 1));
+  line-height: 1.9;
+}
+.starter-words-intro .uicon {
+  margin-top: 2px;
+  color: var(--blue);
+}
+.starter-word-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 11px;
+}
+.starter-word-card.learning-tone {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid var(--learning-border);
+  border-top: 3px solid var(--learning-accent);
+  border-radius: 14px;
+  background: var(--learning-tint);
+}
+.starter-word-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.starter-word-tag {
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: var(--learning-soft);
+  color: var(--learning-ink);
+  font-size: calc(9px * var(--text-scale, 1));
+  font-weight: 800;
+}
+.starter-word-top button {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--learning-border);
+  border-radius: 9px;
+  background: var(--paper);
+  color: var(--learning-ink);
+}
+.starter-word-top button:hover {
+  border-color: var(--learning-accent);
+}
+.starter-word-card h3 {
+  margin: 8px 0 1px;
+  color: var(--ink);
+  font-size: calc(18px * var(--text-scale, 1));
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.starter-word-translation {
+  margin: 0 0 12px;
+  color: var(--learning-body);
+  font-size: calc(11px * var(--text-scale, 1));
+}
+.starter-word-example {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: auto;
+  padding: 11px;
+  border: 1px solid var(--learning-border);
+  border-radius: 9px;
+  background: var(--paper);
+}
+.starter-word-example strong {
+  color: var(--ink);
+  font-size: calc(11px * var(--text-scale, 1));
+  line-height: 1.6;
+}
+.starter-word-example span {
+  color: var(--learning-body);
+  font-size: calc(10px * var(--text-scale, 1));
+  line-height: 1.6;
+}
+.starter-word-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 10px 0 0;
+  color: var(--learning-ink);
+  font-size: calc(10px * var(--text-scale, 1));
+  line-height: 1.7;
+}
+.starter-word-note .uicon {
+  margin-top: 2px;
+}
+.starter-word-reference {
+  margin-top: 22px;
+}
+
+@media (max-width: 760px) {
+  .starter-grammar-card.learning-tone {
+    padding: 16px;
+  }
+  .learning-table th,
+  .learning-table td {
+    padding: 9px 10px;
+  }
+}
+@media (max-width: 380px) {
+  .starter-word-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .grammar-card.learning-tone {
+    padding: 13px;
+  }
+  .learning-table figcaption {
+    padding: 10px 11px;
+  }
+}

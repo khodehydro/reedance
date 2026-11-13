@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f6f9fe" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="description"
+      content="ری‌دنس؛ نمونهٔ یادگیری انگلیسی، اسپانیایی و کره‌ای با موسیقی."
+    />
+    <title>ری‌دنس | زبان روی موج موسیقی</title>
+    <script>
+      // Apply saved display preferences before the first paint.
+      try {
+        const preference = JSON.parse(
+          localStorage.getItem("reedance-theme-v1"),
+        );
+        const dark =
+          preference === "dark" ||
+          (preference === "system" &&
+            matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        if (dark)
+          document.querySelector('meta[name="theme-color"]').content =
+            "#0d1728";
+        const size = JSON.parse(localStorage.getItem("reedance-font-size-v1"));
+        document.documentElement.dataset.fontSize = [
+          "large",
+          "xlarge",
+        ].includes(size)
+          ? size
+          : "normal";
+        document.documentElement.dataset.reduceMotion =
+          JSON.parse(localStorage.getItem("reedance-reduce-motion-v1")) === true
+            ? "true"
+            : "false";
+      } catch {
+        /* Private browsing or unavailable storage. */
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

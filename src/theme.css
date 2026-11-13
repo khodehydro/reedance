@@ -1,0 +1,574 @@
+/* Text sizes are scaled at the declaration, not with zoom, so fixed navigation,
+   cover art and icon glyphs keep their geometry at every reading size. */
+html {
+  --text-scale: 1;
+}
+html[data-font-size="large"] {
+  --text-scale: 1.12;
+}
+html[data-font-size="xlarge"] {
+  --text-scale: 1.24;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  color: #e2ecfa;
+  background: #0d1728;
+  --ink: #e2ecfa;
+  --muted: #a7b9d1;
+  --blue: #96c1ff;
+  --deep: #d9eaff;
+  --line: #2b405c;
+  --paper: #182a43;
+  --soft: #1e3655;
+  --shadow: 0 14px 38px rgba(0, 7, 20, 0.22);
+}
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(ellipse 38% 25% at 8% 0%, #142a48, transparent 75%), #0d1728;
+}
+
+/* Surfaces and dividers shared by the catalog, player, library and starter. */
+html[data-theme="dark"]
+  :is(
+    .desktop-sidebar,
+    .language-switch,
+    .song-tile,
+    .save-icon,
+    .explore-search,
+    .filter-button,
+    .empty-state,
+    .song-header-back,
+    .song-page-header .save-icon,
+    .download-gate,
+    .unavailable-gate,
+    .player-panel,
+    .lesson-panel,
+    .translation-modes button.selected,
+    .word-by-word button,
+    .grammar-card,
+    .word-sheet,
+    .leitner-stages > div,
+    .review-card,
+    .review-word,
+    .library-summary > div,
+    .saved-card,
+    .starter-language,
+    .starter-step,
+    .starter-lesson-panel,
+    .starter-sound-card,
+    .starter-grammar-card,
+    .starter-sound-example,
+    .starter-persian-hint,
+    .starter-practice-actions button,
+    .home-starter-symbol,
+    .starter-next-icon,
+    .home-starter-callout > button,
+    .starter-next-up > button,
+    .offline-banner button,
+    .offline-banner > span
+  ) {
+  background: #182a43;
+  border-color: #2b405c;
+}
+html[data-theme="dark"]
+  :is(
+    .gate-includes,
+    .preview-lyric,
+    .preview-lock,
+    .preview-tags span,
+    .gate-icon,
+    .unavailable-icon,
+    .player-demo-tag,
+    .view-count,
+    .lyric-tip,
+    .lyric-time,
+    .grammar-tag,
+    .grammar-example,
+    .vocab-sound,
+    .phrase-example,
+    .sheet-top button,
+    .word-speak,
+    .word-meaning,
+    .review-answer,
+    .saved-type-icon,
+    .starter-step-icon,
+    .starter-subnote,
+    .starter-grammar-pattern,
+    .starter-grammar-example,
+    .starter-practice-icon,
+    .starter-practice-line,
+    .starter-letter-grid button,
+    .starter-sound-example button,
+    .hero-word-card > span
+  ) {
+  background: #223b5c;
+  border-color: #324b69;
+}
+html[data-theme="dark"]
+  :is(
+    .song-tile,
+    .save-icon,
+    .filter-button,
+    .empty-state,
+    .download-gate,
+    .unavailable-gate,
+    .lesson-panel,
+    .word-by-word button,
+    .grammar-card,
+    .review-card,
+    .leitner-stages > div,
+    .review-word,
+    .saved-card,
+    .starter-lesson-panel,
+    .starter-language,
+    .starter-step,
+    .starter-sound-card,
+    .starter-grammar-card,
+    .starter-letter-focus,
+    .starter-persian-hint,
+    .starter-subnote,
+    .starter-sound-example,
+    .starter-letter-grid button,
+    .starter-grammar-example,
+    .starter-practice-line,
+    .home-starter-callout,
+    .starter-next-up,
+    .offline-banner
+  ) {
+  border-color: #2b405c;
+}
+html[data-theme="dark"]
+  :is(
+    .explore-search button,
+    .hero-word-card,
+    .feature-box > span:first-child,
+    .word-by-word button:hover,
+    .sheet-handle,
+    .saved-card:hover
+  ) {
+  background: #213b5d;
+}
+html[data-theme="dark"] .hero-word-card {
+  color: #dceafa;
+}
+html[data-theme="dark"] .hero-word-card small {
+  color: #a9bfdd;
+}
+html[data-theme="dark"] .song-tile-cover {
+  background: #203650;
+}
+html[data-theme="dark"] .tile-access {
+  background: rgba(20, 34, 54, 0.92);
+}
+html[data-theme="dark"] .tile-access.free {
+  color: #7cddb5;
+}
+html[data-theme="dark"] .tile-access.paid {
+  color: #c7adf8;
+}
+html[data-theme="dark"]
+  :is(
+    .side-link:hover,
+    .side-link.active,
+    .hydro-credit button:hover,
+    .language-switch:hover,
+    .song-header-back:hover,
+    .song-page-header .save-icon:hover,
+    .bottom-link.active .bottom-link-icon,
+    .starter-language.active,
+    .starter-step.active,
+    .lyric-line.active,
+    .leitner-stages > div.first,
+    .word-by-word button:hover
+  ) {
+  background: #223e61;
+}
+html[data-theme="dark"]
+  :is(.save-icon.saved, .song-page-header .save-icon.saved) {
+  background: #284b73;
+  border-color: #406790;
+  color: #acd0ff;
+}
+html[data-theme="dark"] .top-avatar {
+  background: #233d5f;
+  border-color: #36577f;
+  color: #a8ceff;
+}
+html[data-theme="dark"] :is(.top-avatar:hover, .top-avatar.active) {
+  background: #3679d5;
+  color: #fff;
+}
+html[data-theme="dark"] .song-sticky-header {
+  background: rgba(13, 23, 40, 0.97);
+}
+html[data-theme="dark"] .song-sticky-header::after {
+  background: #344966;
+}
+html[data-theme="dark"] .song-header-meta > span {
+  background: #1e3859;
+  border-color: #314d70;
+  color: #bad6ff;
+}
+html[data-theme="dark"] .song-docked-player strong {
+  color: #e5effe;
+}
+html[data-theme="dark"] .gate-preview {
+  background: linear-gradient(150deg, #1c3556, #243f61 60%, #1d3553);
+  border-color: #365375;
+}
+html[data-theme="dark"] .download-progress-track {
+  background: #2b4360;
+}
+html[data-theme="dark"] .translation-modes {
+  background: #101e31;
+}
+html[data-theme="dark"] .lyric-line {
+  border-color: transparent;
+}
+html[data-theme="dark"] .lyric-line.active {
+  border-color: #345479;
+}
+html[data-theme="dark"] .lyric-time {
+  color: #afc5df;
+}
+html[data-theme="dark"] .lyric-line.active .lyric-time {
+  background: #377add;
+  color: #fff;
+}
+html[data-theme="dark"] .sheet-backdrop {
+  background: rgba(0, 6, 17, 0.72);
+}
+html[data-theme="dark"] .sheet-save.is-saved {
+  background: #153e38;
+  color: #a1eac6;
+}
+html[data-theme="dark"] .review-again {
+  background: #382d29;
+  border-color: #5d463c;
+  color: #f2bb8c;
+}
+html[data-theme="dark"] .offline-banner,
+html[data-theme="dark"] .home-starter-callout,
+html[data-theme="dark"] .starter-next-up {
+  background: linear-gradient(115deg, #1a3353, #192c46);
+}
+html[data-theme="dark"] .starter-letter-focus {
+  background: linear-gradient(160deg, #1a3351, #203b5b);
+}
+html[data-theme="dark"] .starter-translation {
+  background: #173c37;
+  border-color: #34615a;
+}
+html[data-theme="dark"] .starter-translation strong {
+  color: #adebd7;
+}
+html[data-theme="dark"] .starter-translation span {
+  color: #8ad6ba;
+}
+html[data-theme="dark"]
+  :is(
+    .starter-letter-grid button:hover,
+    .starter-practice-line button:hover,
+    .starter-practice-line button.active
+  ) {
+  background: #295078;
+  color: #b4d4ff;
+}
+html[data-theme="dark"] .starter-letter-grid button.selected {
+  background: #377add;
+  color: #fff;
+  border-color: #5897f1;
+}
+html[data-theme="dark"] .starter-practice-actions .starter-reveal {
+  background: #3076db;
+  color: #fff;
+}
+html[data-theme="dark"] :is(.feature-blue, .feature-peach, .feature-lavender) {
+  border: 1px solid #2f4766;
+}
+html[data-theme="dark"] .feature-blue {
+  background: #1e3c61;
+  color: #abd0ff;
+}
+html[data-theme="dark"] .feature-peach {
+  background: #40312f;
+  color: #f2bc99;
+}
+html[data-theme="dark"] .feature-lavender {
+  background: #302e54;
+  color: #cebeff;
+}
+html[data-theme="dark"] .library-stat-icon.blue {
+  background: #224367;
+  color: #afd1ff;
+}
+html[data-theme="dark"] .library-stat-icon.amber {
+  background: #43352c;
+  color: #f1b980;
+}
+html[data-theme="dark"] .library-stat-icon.violet {
+  background: #373156;
+  color: #c9b8ff;
+}
+html[data-theme="dark"] .saved-type-icon.grammar {
+  background: #44352d;
+  color: #f1bb8a;
+}
+html[data-theme="dark"] .saved-type-icon.phrases {
+  background: #332f55;
+  color: #c8b8f6;
+}
+html[data-theme="dark"] .saved-type-icon {
+  color: #add0ff;
+}
+html[data-theme="dark"] .mini-player,
+html[data-theme="dark"] .bottom-nav {
+  background: rgba(21, 37, 60, 0.97);
+  border-color: #385273;
+  box-shadow: 0 12px 32px rgba(0, 6, 19, 0.36);
+}
+html[data-theme="dark"] .mini-player {
+  background: linear-gradient(115deg, #1b3554, #1a2d47);
+}
+html[data-theme="dark"] .mini-progress {
+  background: #79afff;
+}
+html[data-theme="dark"] .toast {
+  background: #315989;
+}
+
+/* Text on surfaces: keep ink, supporting copy and accent distinct. The four
+   dark-blue editorial banners retain their own light-on-blue styles. */
+html[data-theme="dark"]
+  :is(
+    .brand-words strong,
+    .page-heading h1,
+    .section-title h2,
+    .tile-title strong,
+    .feature-box strong,
+    .empty-state h3,
+    .song-header-title h1,
+    .download-gate h2,
+    .unavailable-gate h2,
+    .gate-preview h3,
+    .preview-lyric strong,
+    .player-heading strong,
+    .lesson-view-header h2,
+    .lyric-english button,
+    .word-by-word strong,
+    .grammar-card h3,
+    .grammar-example strong,
+    .vocab-main strong,
+    .phrase-section > h3,
+    .phrase-card > strong,
+    .word-sheet-heading h2,
+    .word-meaning strong,
+    .word-example strong,
+    .review-card h2,
+    .review-answer strong,
+    .review-word strong,
+    .library-summary strong,
+    .offline-banner strong,
+    .saved-card strong,
+    .mini-open strong,
+    .home-starter-callout strong,
+    .starter-next-up strong,
+    .starter-section-heading h2,
+    .starter-language strong,
+    .starter-step-copy strong,
+    .starter-lesson-top h2,
+    .starter-alphabet-main h3,
+    .starter-letter-focus > b,
+    .starter-persian-hint strong,
+    .starter-sound-example b,
+    .starter-sound-hint strong,
+    .starter-grammar-card h3,
+    .starter-grammar-example strong,
+    .starter-practice-heading h3,
+    .starter-line-pronunciation,
+    .starter-practice-line button,
+    .starter-piece-meaning strong
+  ) {
+  color: #e3edfa;
+}
+html[data-theme="dark"]
+  :is(
+    .brand-words small,
+    .nav-caption,
+    .side-link,
+    .sidebar-foot,
+    .hydro-credit button,
+    .topbar-desktop-note,
+    .page-heading p,
+    .tile-title span,
+    .tile-meta,
+    .feature-box small,
+    .home-footnote,
+    .explore-search input::placeholder,
+    .filter-button,
+    .catalog-notice,
+    .empty-state p,
+    .song-header-title > small,
+    .download-gate > p,
+    .unavailable-gate p,
+    .gate-includes div,
+    .gate-size,
+    .preview-lyric small,
+    .player-heading span:not(.player-demo-tag),
+    .player-timeline > div,
+    .player-controls button,
+    .player-bottom button,
+    .player-bottom > span,
+    .lesson-tabs button,
+    .translation-modes button,
+    .lyric-tip,
+    .lyric-time,
+    .lyric-persian,
+    .word-by-word small,
+    .lesson-disclaimer,
+    .view-intro,
+    .grammar-card > p,
+    .grammar-example small,
+    .vocab-main span,
+    .phrase-card > p,
+    .phrase-example span,
+    .phrase-example small,
+    .sentence-card > small,
+    .sheet-top button,
+    .word-sheet-heading span:not(.word-persian-reading),
+    .word-example small,
+    .leitner-stages small,
+    .review-card > p,
+    .review-answer small,
+    .review-word small,
+    .library-summary small,
+    .offline-banner p,
+    .saved-card span:not(.saved-type-icon):not(.uicon),
+    .mini-open small,
+    .bottom-link,
+    .home-starter-callout p,
+    .starter-next-up p,
+    .starter-section-heading > small,
+    .starter-language small,
+    .starter-step-copy small,
+    .starter-lesson-top p,
+    .starter-letter-focus p,
+    .starter-subnote,
+    .starter-sound-example small,
+    .starter-sound-card p,
+    .starter-grammar-card p,
+    .starter-grammar-example span,
+    .starter-practice-heading p,
+    .starter-piece-meaning,
+    .starter-lesson-footer > span
+  ) {
+  color: #a9bdd7;
+}
+html[data-theme="dark"]
+  :is(
+    .side-link.active,
+    .language-switch,
+    .top-avatar,
+    .heading-eyebrow,
+    .section-eyebrow,
+    .section-action,
+    .save-icon.saved,
+    .tile-level,
+    .explore-search,
+    .empty-icon,
+    .song-header-back,
+    .gate-overline,
+    .gate-icon,
+    .gate-preview-label,
+    .player-demo-tag,
+    .player-bottom button.on,
+    .lesson-tabs button.active,
+    .view-overline,
+    .view-count,
+    .translation-modes button.selected,
+    .word-by-word small:hover,
+    .grammar-index,
+    .grammar-tag,
+    .vocab-sound,
+    .phrase-section > h3 .uicon,
+    .word-sheet-label,
+    .word-speak,
+    .word-meaning span,
+    .word-example > span,
+    .review-label,
+    .leitner-stages strong,
+    .saved-card small,
+    .home-starter-callout small,
+    .starter-next-up > div > div > span,
+    .starter-section-heading > div > span,
+    .starter-lesson-overline,
+    .starter-letter-focus > span,
+    .starter-letter-focus > strong,
+    .starter-persian-hint span,
+    .starter-sound-hint span,
+    .starter-line-pronunciation span,
+    .starter-sound-card > strong,
+    .starter-grammar-pattern,
+    .starter-piece-meaning strong
+  ) {
+  color: #9bc4ff;
+}
+html[data-theme="dark"] .word-sheet-heading .word-persian-reading {
+  color: #b4d5ff;
+  background: #274463;
+}
+html[data-theme="dark"] .preview-lyric strong {
+  color: #e3edfa;
+}
+html[data-theme="dark"] .preview-lyric small {
+  color: #abc2de;
+}
+html[data-theme="dark"] .preview-tags span {
+  color: #b3d4ff;
+}
+html[data-theme="dark"] .review-answer strong {
+  color: #e3edfa;
+}
+html[data-theme="dark"]
+  :is(
+    .offline-banner button,
+    .home-starter-callout > button,
+    .starter-next-up > button,
+    .starter-sound-example button,
+    .starter-step-icon,
+    .hero-word-card > span
+  ) {
+  color: #a7ceff;
+}
+html[data-theme="dark"] .hero-button {
+  color: #154f9c;
+}
+html[data-theme="dark"] .bottom-link.active {
+  color: #a2c8ff;
+}
+html[data-theme="dark"] .mini-play,
+html[data-theme="dark"] .player-controls .main-play,
+html[data-theme="dark"] .filter-button.active,
+html[data-theme="dark"] .review-good {
+  color: #fff;
+}
+html[data-theme="dark"] .filter-button.active {
+  background: #3073df;
+}
+html[data-theme="dark"] .starter-language.active > .uicon,
+html[data-theme="dark"] .starter-step.active .starter-step-icon {
+  color: #9cc7ff;
+}
+html[data-theme="dark"] .tile-title:hover strong,
+html[data-theme="dark"] .lyric-english button:hover {
+  color: #9bc4ff !important;
+}
+
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+  scroll-behavior: auto !important;
+  animation: none !important;
+  transition: none !important;
+}

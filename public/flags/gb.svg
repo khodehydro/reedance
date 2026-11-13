@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" role="img" aria-label="United Kingdom">
+  <defs><clipPath id="flag"><rect width="60" height="40" rx="4"/></clipPath></defs>
+  <g clip-path="url(#flag)">
+    <rect width="60" height="40" fill="#012169"/>
+    <path d="M-5-4 65 44M65-4-5 44" stroke="#fff" stroke-width="11"/>
+    <path d="M-5-4 65 44M65-4-5 44" stroke="#c8102e" stroke-width="4"/>
+    <path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="14"/>
+    <path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="7"/>
+  </g>
+  <rect x=".5" y=".5" width="59" height="39" rx="3.5" fill="none" stroke="#0b244a" stroke-opacity=".14"/>
+</svg>

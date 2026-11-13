@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" role="img" aria-label="South Korea">
+  <defs><clipPath id="flag"><rect width="60" height="40" rx="4"/></clipPath></defs>
+  <g clip-path="url(#flag)">
+    <rect width="60" height="40" fill="#fff"/>
+    <circle cx="30" cy="20" r="9" fill="#0047a0"/>
+    <path d="M21 20a9 9 0 0 1 18 0c0 4.5-4.5 4.5-9 0s-9-4.5-9 0" fill="#cd2e3a"/>
+    <g fill="#111" transform="rotate(-33 30 20)">
+      <rect x="11" y="7" width="7" height="1.7"/><rect x="11" y="9.5" width="7" height="1.7"/><rect x="11" y="12" width="7" height="1.7"/>
+      <rect x="42" y="27" width="7" height="1.7"/><rect x="42" y="29.5" width="7" height="1.7"/><rect x="42" y="32" width="7" height="1.7"/>
+      <rect x="42" y="7" width="3" height="1.7"/><rect x="46" y="7" width="3" height="1.7"/><rect x="42" y="9.5" width="7" height="1.7"/><rect x="42" y="12" width="3" height="1.7"/><rect x="46" y="12" width="3" height="1.7"/>
+      <rect x="11" y="27" width="7" height="1.7"/><rect x="11" y="29.5" width="3" height="1.7"/><rect x="15" y="29.5" width="3" height="1.7"/><rect x="11" y="32" width="7" height="1.7"/>
+    </g>
+  </g>
+  <rect x=".5" y=".5" width="59" height="39" rx="3.5" fill="none" stroke="#0b244a" stroke-opacity=".16"/>
+</svg>
