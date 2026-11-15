@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:reedance:catalog-envelope:v1",
+  "title": "Reedance signed catalog envelope v1",
+  "description": "For BOTH public catalog endpoints. Verify Ed25519 on the original decoded payload bytes before parsing; reject duplicate keys, noncanonical Base64URL and oversized decoded payloads independently of this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalogKeyId", "payload", "signature"],
+  "properties": {
+    "catalogKeyId": { "type": "string", "minLength": 5, "maxLength": 32, "pattern": "^cat-[a-z0-9-]+$" },
+    "payload": { "type": "string", "minLength": 1, "maxLength": 174763, "pattern": "^[A-Za-z0-9_-]+$" },
+    "signature": { "type": "string", "minLength": 86, "maxLength": 86, "pattern": "^[A-Za-z0-9_-]+$" }
+  }
+}

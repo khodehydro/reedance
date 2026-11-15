@@ -1,0 +1,5 @@
+{
+  "catalogKeyId": "cat-test-v1",
+  "payload": "ewogICJjYXRhbG9nVmVyc2lvbiI6IDEsCiAgImtpbmQiOiAic29uZ3MiLAogICJyZXZpc2lvbiI6IDEsCiAgInB1Ymxpc2hlZEF0IjogIjIwMjYtMTEtMTNUMDA6MDA6MDBaIiwKICAibGFuZ3VhZ2UiOiAiZXMiLAogICJzb25ncyI6IFtdCn0K",
+  "signature": "bHwItx2fES3WxUqp1hef0TEThl-VLAxOJPl-BAWj-WYf5xfK501Uoa8dobwwvSYD6Dplxz1Gqoxrfo400wG1AQ"
+}

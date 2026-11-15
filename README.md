@@ -4,11 +4,11 @@
 
 ## معماریِ محصول بومی و استودیوی محتوا
 
-برای تحویل کار به دو ایجنت مستقل، از [نقشهٔ راه اندروید Kotlin و استودیوی Windows/Electron](docs/architecture/README.md) شروع کن؛ [قرارداد بستهٔ رمزنگاری‌شده، امضا و نسخه](docs/architecture/PACKAGE_V1.md)، [راهنمای Android](docs/architecture/ANDROID_AGENT.md)، [راهنمای Windows](docs/architecture/WINDOWS_AGENT.md)، [ورودی ایجنت محتوای کدنویسی‌شده](docs/architecture/AI_CONTENT_AGENT.md)، [آزمون‌های بین‌سکویی](docs/architecture/TEST_PLAN.md) و [متن آمادهٔ تحویل](docs/architecture/HANDOFF.md) ادامهٔ آن‌اند. schemaها و fixture تست فقط در [`contracts/v1/`](contracts/v1/) هستند.
+برای اتصال محصول بومی، از [نقشهٔ راه Windows → هاست مالک + CMS رایگان Cloudflare → Android](docs/architecture/README.md) شروع کن؛ [قرارداد بستهٔ رمزنگاری‌شده](docs/architecture/PACKAGE_V1.md) و [`contracts/v1/`](contracts/v1/) از [قرارداد فهرست زندهٔ زبان/آهنگ](docs/architecture/CATALOG_V1.md) و [`contracts/catalog/v1/`](contracts/catalog/v1/) **جدا** هستند. [دستور کار CMS](docs/architecture/CMS_AGENT.md)، [اتصال به پروژهٔ Android موجود](docs/architecture/ANDROID_AGENT.md)، [راهنمای Windows](docs/architecture/WINDOWS_AGENT.md)، [راهنمای ایجنت متن](docs/architecture/AI_CONTENT_AGENT.md)، [تست‌های مشترک](docs/architecture/TEST_PLAN.md) و [پیام‌های آمادهٔ ایجنت‌ها](docs/architecture/HANDOFF.md) را ببین.
 
 **جریان تدوین محتوا:** متن آهنگ → ایجنت → **یک `*.rddraft.json` فقط شامل درس/واژه/گرامر/جدول/آزمون و لیریکِ بدون زمان** → ورود به Windows Studio → **انتخاب فایل صوتی از سیستم توسط مدیر + سینک سطر‌به‌سطر در تایم‌لاین اختصاصی + اصلاح/تأیید** → یک `.rdpack` رمزنگاری‌شدهٔ صوت و درسِ زمان‌دار. [نمونهٔ فایل خام](contracts/v1/fixtures/quiet-step.rddraft.json) و [راهنمای مدیر ویندوز](docs/architecture/WINDOWS_AGENT.md) همین مرز را مشخص می‌کنند.
 
-**هیچ‌کدام از دو اپ بومی هنوز در این مخزن ساخته نشده‌اند**؛ کلید/URL/مجوز تولیدی نیز در Git قرار نمی‌گیرد.
+**انتشار محتوا:** مالک `.rdpack` و `latest.json` امضاشده و کاور اختیاری را **فقط روی هاست خودش** می‌گذارد؛ در CMS Cloudflare فقط زبان، عنوان/هنرمند و `manifestUrl`/`coverUrl` را ثبت و منتشر می‌کند. Android فهرست آهنگ **زبان انتخابی** را از CMS می‌گیرد؛ افزودن آهنگ سازگار بدون APK تازه ممکن است. Cloudflare هیچ صوت/درس/تصویری دریافت نمی‌کند. این CMS و اتصال جدید هنوز در این مخزن deploy/پیاده‌سازی نشده‌اند؛ [پروژهٔ Android جداگانه از قبل وجود دارد](https://github.com/khodehydro/reedance-android/tree/arena/f7c293e1-reedance-android) و کاتالوگ محلی آن باید طبق اسناد جدید متصل شود. کلید/URL/مجوز تولیدی در Git قرار نمی‌گیرد؛ سقف پلن رایگان Cloudflare و هزینهٔ هاست مالک جداست.
 
 ## اجرا
 
@@ -17,7 +17,7 @@ npm install
 npm run dev
 ```
 
-برای خروجی نهایی: `npm run build` و `npm run preview`. آزمون‌های منطقی را با `npm test` اجرا کن. سرور توسعه برای پیش‌نمایش روی `0.0.0.0` اجرا می‌شود.
+برای خروجی نهایی: `npm run build` و `npm run preview`. آزمون‌های وب و قرارداد بسته/کاتالوگ را با `npm test` اجرا کن؛ fixture امضای کاتالوگ با `node scripts/generate_catalog_fixture.mjs` بازتولید می‌شود (**کلید تست، ممنوع در تولید**). سرور توسعه برای پیش‌نمایش روی `0.0.0.0` اجرا می‌شود.
 
 ## مسیر قابل امتحان
 
@@ -101,4 +101,4 @@ const table = createLearningTable({
 - `src/styles.css`، `src/starter.css`، `src/learning.css`، `src/profile.css`، `src/quiz.css` و `src/theme.css`: چیدمان واکنش‌گرا، طراحی آموزش/آزمون/صفحهٔ کاربری، تم تاریک/روشن، اندازهٔ نوشته و کاهش حرکت
 - `tests/learning.test.mjs`: سازگاری بسته‌های قدیمی، ساختار جدول‌های دوزبانه، صورت و جنسیت اسم‌های اسپانیایی و تشخیص واژه‌های یونیکد
 
-برای آزمودن سریع ظاهر و تعامل‌ها React + Vite انتخاب شده‌اند. پیاده‌سازی نهاییِ موردنظر **Android بومی با Kotlin/Android Studio** و استودیوی مدیریت محتوا **Electron برای Windows** است؛ HTML/CSS این نسخه مستقیماً به رابط بومی منتقل نمی‌شود. مرجع اجرایی آنها در `docs/architecture/` قرار دارد.
+برای آزمودن سریع ظاهر و تعامل‌ها React + Vite انتخاب شده‌اند. **پروژهٔ بومی Android در مخزن جدا موجود است**؛ این پروتوتایپ وب نه آن اپ است، نه CMS Cloudflare یا استودیوی Windows. اسناد اتصال CMS به Android موجود، مسیر محتوای Electron/Windows و قراردادهای قابل‌آزمون در [`docs/architecture/`](docs/architecture/) و [`contracts/catalog/v1/`](contracts/catalog/v1/) قرار دارند.

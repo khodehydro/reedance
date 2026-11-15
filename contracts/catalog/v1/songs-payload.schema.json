@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:reedance:catalog-songs:v1",
+  "title": "Reedance published songs for ONE target language v1",
+  "description": "Discovery metadata and owner-host HTTPS URLs only. Manifest identity and pack integrity are independently authenticated by the existing contracts/v1 protocol.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalogVersion", "kind", "revision", "publishedAt", "language", "songs"],
+  "properties": {
+    "catalogVersion": { "const": 1 },
+    "kind": { "const": "songs" },
+    "revision": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+    "publishedAt": { "type": "string", "format": "date-time" },
+    "language": { "type": "string", "pattern": "^[a-z]{2,3}$" },
+    "songs": {
+      "type": "array", "maxItems": 100,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["songId", "targetLanguage", "title", "artist", "manifestUrl"],
+        "properties": {
+          "songId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "targetLanguage": { "type": "string", "pattern": "^[a-z]{2,3}$" },
+          "title": { "type": "string", "minLength": 1, "maxLength": 256, "pattern": "\\S" },
+          "artist": { "type": "string", "minLength": 1, "maxLength": 256, "pattern": "\\S" },
+          "manifestUrl": { "type": "string", "format": "uri", "maxLength": 2048, "pattern": "^https://" },
+          "coverUrl": { "type": "string", "format": "uri", "maxLength": 2048, "pattern": "^https://" },
+          "level": { "enum": ["A1", "A2", "B1", "B2", "C1", "C2"] },
+          "durationMs": { "type": "integer", "minimum": 1, "maximum": 86400000 }
+        }
+      }
+    }
+  }
+}

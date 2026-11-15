@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:reedance:catalog-languages:v1",
+  "title": "Reedance published language index v1",
+  "description": "Only published language metadata, NEVER lessons, audio, images, signing keys or user data. Clients must ignore unsupported language codes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalogVersion", "kind", "revision", "publishedAt", "languages"],
+  "properties": {
+    "catalogVersion": { "const": 1 },
+    "kind": { "const": "languages" },
+    "revision": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+    "publishedAt": { "type": "string", "format": "date-time" },
+    "languages": {
+      "type": "array", "maxItems": 32,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["code", "nameFa", "nameEn"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[a-z]{2,3}$" },
+          "nameFa": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "\\S" },
+          "nameEn": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "\\S" }
+        }
+      }
+    }
+  }
+}

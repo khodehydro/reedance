@@ -1,0 +1,26 @@
+{
+  "catalogVersion": 1,
+  "kind": "songs",
+  "revision": 2,
+  "publishedAt": "2026-11-13T01:00:00Z",
+  "language": "en",
+  "songs": [
+    {
+      "songId": "quiet-step",
+      "targetLanguage": "en",
+      "title": "Quiet Step (TEST ONLY)",
+      "artist": "Reedance Contract Tests",
+      "manifestUrl": "https://content.example.invalid/reedance/en/quiet-step/latest.json",
+      "coverUrl": "https://content.example.invalid/art/quiet-step.webp",
+      "level": "A1",
+      "durationMs": 4000
+    },
+    {
+      "songId": "new-track",
+      "targetLanguage": "en",
+      "title": "New Track (TEST ONLY)",
+      "artist": "Reedance Contract Tests",
+      "manifestUrl": "https://content.example.invalid/reedance/en/new-track/latest.json"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "catalogVersion": 1,
+  "kind": "languages",
+  "revision": 1,
+  "publishedAt": "2026-11-13T00:00:00Z",
+  "languages": [
+    {
+      "code": "en",
+      "nameFa": "انگلیسی",
+      "nameEn": "English"
+    },
+    {
+      "code": "es",
+      "nameFa": "اسپانیایی",
+      "nameEn": "Spanish"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Reedance signed latest.json payload v1",
-  "description": "The decoded UTF-8 JSON bytes from latest.json.payload. Sign the original bytes, not a reserialized object. Filename/version/hash and bootstrap consistency are additional semantic checks.",
+  "description": "The decoded UTF-8 JSON bytes from latest.json.payload. Sign the original bytes, not a reserialized object. Filename/version/hash and agreement with the trusted song source (signed remote catalog or legacy bundled bootstrap) are additional semantic checks.",
   "type": "object", "additionalProperties": false,
   "required": ["manifestVersion", "songId", "targetLanguage", "contentVersionCode", "displayVersion", "containerVersion", "lessonSchemaVersion", "releasedAt", "package"],
   "properties": {

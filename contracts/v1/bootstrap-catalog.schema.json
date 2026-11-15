@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Reedance Android bundled catalog v1",
-  "description": "Bundled, not remotely loaded, in v1. HTTPS manifest URLs and host allowlists must be verified by the Android app at build and runtime; the catalog does not carry trust keys.",
+  "title": "Reedance legacy APK-bundled catalog v1",
+  "description": "Historical bundled list used by the original package v1 design. For newly published songs without an APK update, use the independently signed contracts/catalog/v1 API instead; this bundled file is not a trusted remote catalog. HTTPS manifest URLs and host allowlists must still be verified by Android at build and runtime; this file carries no trust keys.",
   "type": "object", "additionalProperties": false,
   "required": ["catalogVersion", "songs"],
   "properties": {

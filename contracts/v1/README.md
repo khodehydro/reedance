@@ -1,12 +1,11 @@
-# قرارداد مشترک v1
+# قرارداد مشترک بسته/درس v1 (تاریخی و همچنان معتبر برای bytes)
 
-دو ایجنت (Kotlin/Android و Electron/Windows) باید همین فایل‌ها را در این مخزن مصرف کنند؛ نسخهٔ وب (`src/`/`public/`) مدل محصول است، نه پیاده‌سازی قرارداد بسته. **این پوشه فعلاً مشخصات و fixture تست است، نه export تولیدی.**
+این پوشه مشخصات و fixture تست `.rddraft.json` → Windows Studio → `.rdpack`/`latest.json` است، **نه export تولیدی**. مرجع هنجاری: [PACKAGE_V1.md](../../docs/architecture/PACKAGE_V1.md). پروژهٔ Android بومی در repo جدا وجود دارد؛ fixture تست ساخت/اجرای آن را ثابت نمی‌کند.
 
-- [مشخصات هنجاری: بسته، فرمت بایت، امضا، کلید، نسخه و نصب](../../docs/architecture/PACKAGE_V1.md)
-- [شمای JSON خام ایجنت](draft.schema.json): **یک فایل `*.rddraft.json` حاوی محتوای تولیدشده از لیریک، بدون صوت و بدون زمان‌بندی**. [`fixtures/quiet-step.rddraft.json`](fixtures/quiet-step.rddraft.json) مثال کامل آن است.
-- [شمای درس منتشرشده](lesson.schema.json): `lesson.json` **بعد از انتخاب صوت از سیستم و سینک دستی سطرها در ویندوز**، داخل `.rdpack`؛ raw draft هرگز با این schema به‌عنوان منتشرشده پذیرفته نمی‌شود. شمای draft برای تعریف‌های مشترک به `$id` محلی `urn:reedance:lesson:v1` در این فایل ارجاع می‌دهد؛ هر دو را بدون شبکه در validator ثبت کنید.
-- [شمای envelope](manifest-envelope.schema.json) و [شمای payload](manifest-payload.schema.json) مربوط به `latest.json`
-- [شمای کاتالوگ bootstrap در APK](bootstrap-catalog.schema.json)
-- [`fixtures/`](fixtures/): نمونهٔ کوچکِ مشترک با کلیدهای **فقط تست** و آزمون مصرف‌کننده؛ هر دو تیم باید آن را پاس کنند.
+- [شمای draft](draft.schema.json): **یک فایل خامِ آموزشی از متن آهنگ** بدون صوت/رسانه و `startMs/endMs`؛ [نمونه](fixtures/quiet-step.rddraft.json).
+- [شمای lesson](lesson.schema.json): `lesson.json` **بعد از انتخاب صوت از سیستم توسط مالک، سینک تمام سطرها در تایم‌لاین Windows و تأیید محتوا/حقوق**، فقط داخل pack رمزنگاری‌شده. شمای draft برای تعریف‌های مشترک از `$id` محلی `urn:reedance:lesson:v1` استفاده می‌کند؛ هر دو schema را بدون شبکه ثبت کنید.
+- [شمای envelope](manifest-envelope.schema.json) و [payload](manifest-payload.schema.json): manifest امضاشدهٔ publisher یعنی `latest.json` روی **هاست مالک**؛ امضای آن با امضای catalog Cloudflare فرق دارد.
+- [شمای legacy bootstrap در APK](bootstrap-catalog.schema.json): قرارداد قدیمی فهرستِ ثابت؛ **منبع اضافه‌کردن آهنگ جدید نیست**. برای فهرست زبان‌ها و آهنگ‌ها/URLهای هاست مالک به [قرارداد مستقل catalog/v1](../catalog/v1/README.md) و [CATALOG_V1.md](../../docs/architecture/CATALOG_V1.md) مراجعه کنید.
+- [`fixtures/`](fixtures/): نمونهٔ کوچک test-only با صوت WAV **جدا از draft** و کلید تست؛ generator مرحلهٔ انتخاب صوت/علامت‌گذاریِ فرضی Windows را شبیه‌سازی می‌کند. بردار AES آزمایشی `enc-test-v1` با پروفایل password-derived `enc-main` شاخهٔ Android یکی نیست.
 
-JSON Schema تنها ساختار را چک می‌کند؛ اتصال صوت محلی به پروژه، تکمیل/بازبینی `startMs` همهٔ سطرها، مرجع‌های متقابل، نام فایل، حقوق، SHA و ضد-rollback در PACKAGE_V1 لازم‌اند. نمونهٔ صوت fixture **فایلی جدا از draft** است و generator تست، مرحلهٔ فرضیِ انتخاب آن در ویندوز را شبیه‌سازی می‌کند. `contracts/v1` را بدون هماهنگی دو تیم ناسازگار تغییر ندهید؛ یک فیلد/رفتار ناسازگار به `v2` و تست ارتقا نیاز دارد.
+JSON Schema فقط ساختار را کنترل می‌کند؛ صحت انتخاب صوت، زمان‌بندی/مجوز، ارجاعات، ZIP/SHA/AES-GCM و ضد rollback طبق PACKAGE_V1 لازم است. Schemaهای مرجع این نسخه en/es/ko را محدود می‌کنند؛ runtime Android برای tr extension دارد، اما تا سازگاری نسخه‌دارِ Windows/Android/قرارداد به‌طور مشترک تأیید نشود نباید این اختلاف را با انتشار خودسرانهٔ CMS پنهان کرد. تغییر ناسازگار به نسخهٔ جدید همراه با تست تعامل‌پذیری نیاز دارد.
